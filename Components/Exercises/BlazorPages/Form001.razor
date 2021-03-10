@@ -1,0 +1,30 @@
+﻿
+<input type="text" @bind-value="@name" placeholder="Name" />
+<input type="text" @bind-value="@country" placeholder="Country" />
+<input type="button" value="Click me" @onclick="GetInformation">
+
+<div style="background-color:darkgray; color:blueviolet">
+    <h3>@Message</h3>
+    @message
+</div>
+
+@code {
+    [Parameter]
+    public string Message { get; set; }
+
+    string name = string.Empty;
+    string country = string.Empty;
+    string message = string.Empty;
+
+    protected override Task OnInitializedAsync()
+    {
+        message = Message;
+        return base.OnInitializedAsync();
+    }
+
+
+    private void GetInformation()
+    {
+        message = $"Welcome {name}, Welcome {country}";
+    }
+} 
